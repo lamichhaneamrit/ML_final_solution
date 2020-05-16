@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+\usepackage[affil-it]{authblk}
+\graphicspath{{Images/}}
+\usepackage{mathtools}
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+\numberwithin{equation}{section}
+\usepackage{amsmath,mleftright}
+\usepackage{xparse}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{nomencl}
+\makenomenclature
+\usepackage{xcolor}
+\usepackage{soul}
+\newcommand{\mathcolorbox}[2]{\colorbox{#1}{$\displaystyle #2$}}
+\usepackage{cancel}
+
+%\pagestyle{headings}
+
+\begin{document}
+
+\section{Exercise 1 }
+
+Poisson probability function, \\
+\begin{equation}\label{eq1}
+p(x|\lambda) = \exp(-\lambda) \cdot \frac{\lambda^x}{x!}\\
+\end{equation}
+where x = 0,1,2,....,N \\
+log likelihood function, \\
+\begin{equation}\label{eq2}
+l(\lambda) = \ln \prod_{i=1}^{N}f(x_i|\lambda) \\
+\end{equation}
+\begin{equation}\label{eq3}
+l(\lambda) = \sum_{i=1}^{N} \ln(\frac{\exp(-\lambda) \cdot \lambda^x}{x!})\\
+\end{equation}
+\begin{equation}\label{eq4}
+l(\lambda) = \sum_{i=1}^{N} \ln(\exp(-\lambda)) + \sum_{i=1}^{N} x_i \cdot (\ln(\lambda)) - \sum_{i=1}^{N} \ln(x!) \\
+\end{equation}
+From calculus, a necessary condition for a point $\lambda$ to be a local maximum of l($\lambda$) is,\\
+\begin{equation}\label{eq5}
+\frac{\partial l(\lambda)}{\partial \lambda} = 0\\
+\end{equation}
+\begin{equation}\label{eq6}
+\frac{\partial}{\partial \lambda} (\sum_{i=1}^{N} \ln(\exp(-\lambda)) + \sum_{i=1}^{N} x_i \cdot (\ln(\lambda)) - \sum_{i=1}^{N} \ln(x!)) = 0\\
+\end{equation}
+\begin{equation}\label{eq7}
+\frac{\partial (-N\cdot \lambda)}{\partial \lambda} + \frac{\partial (\ln (\lambda))\cdot \sum_{i=1}^{N} x_i}{\partial \lambda} - \cancelto{0}{\frac{\partial (\sum_{i=1}^{N} \ln (x_i!))}{\partial \lambda}} = 0 \\
+\end{equation}
+\begin{equation}\label{eq8}
+-n + \frac{1}{\lambda}\cdot \sum_{i=1}^{N} x_i = 0 \\
+\end{equation}
+\begin{equation}\label{eq9}
+\lambda = \frac{1}{N} \cdot \sum_{i=1}^{N} x_i  \\
+\end{equation}
+which is equal to sample mean of N data points.\\
+
+
+\section{Exercise 2 }
+\subsection{Task: A}
+
+\begin{equation}\label{eq10}
+\mathcal{N}(x; \mu, \sigma^2) = \frac{1}{\sqrt{2 \cdot \pi \cdot \sigma^2}}\cdot \exp{(\frac{1}{2}(\frac{(x-\mu)^2}{\sigma^2}))} \\
+\end{equation}
+\begin{equation}\label{eq11}
+p(x|\mu_1, \mu_2, \sigma_1^2, \sigma_2^2) = \frac{1}{2}\mathcal{N}(x; \mu_1, \sigma_1^2) + \frac{1}{2}\mathcal{N}(x; \mu_2, \sigma_2^2) \\
+\end{equation}
+Since, $\mathcal{N}(x; \mu, \sigma^2)$ is a probability density function, so any scalar multiplied to probability density function will change the magnitude of the function, but still it will be a probability density function. \\
+
+\subsection{Task: B}
+
+\begin{equation}\label{eq12}
+\mathcal{N}(x; \mu, \sigma^2) = \frac{1}{\sqrt{2 \cdot \pi \cdot \sigma^2}}\cdot \exp{(\frac{1}{2}(\frac{(x-\mu)^2}{\sigma^2}))} \\
+\end{equation}
+\begin{equation}\label{eq13}
+p(x|\mu_1, \mu_2, \sigma_1^2, \sigma_2^2) = \frac{1}{2}\mathcal{N}(x; \mu_1, \sigma_1^2) + \frac{1}{2}\mathcal{N}(x; \mu_2, \sigma_2^2) \\
+\end{equation}
+$p(x|\mu_1, \mu_2, \sigma_1^2, \sigma_2^2)$ has total 4 unknown parameters, namely the means i.e., $\mu_1$, $\mu_2$ and the standard deviations i.e., $\sigma_1$, $\sigma_2$. \\
+The log-likelihood function will be, \\
+\begin{equation}\label{eq14}
+l(\mu_1, \mu_2, \sigma_1, \sigma_2) = \sum_{i=1}^{N} \ln{f_{\mu,\sigma}(x)} \\
+\end{equation}
+This function will be of 4 unknown parameters, so the maximum likelihood of function $l(\mu_1, \mu_2, \sigma_1, \sigma_2)$ will be to maximize over 4-dimensional parameter space which is a bit harder for computation.  
+
+\section{Exercise 4 }
+The decision boundary will always be a line separating the two class regions. Given that we have K of classes whose regions will be defined as $R_1$, $R_2$,..., $R_K$.
+\begin{equation}\label{eq15}
+P(missclassification) = \int_{R_1} \sum_{i\neq1} p(c_i, x)dx + ... + \int_{R_K} \sum_{i\neq K} p(c_i, x)dx\\
+\end{equation}
+\begin{equation}\label{eq16}
+P(correction) = \int_{R_1} p(c_1, x)dx + ... + \int_{R_K} p(c_K, x)dx\\
+\end{equation}
+\begin{equation}\label{eq17}
+P(missclassification) + P(correction) = 1 \\
+\end{equation}
+P(correction) is easier for computation than P(missclassification). So, the decision region will be,\\
+\begin{equation}\label{eq18}
+R_i = {x \in dataset|p(c_i, x)} \\
+\end{equation}
+$R_K$ could be empty set. 
+
+
+
+\end{document}
