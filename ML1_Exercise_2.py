@@ -5,8 +5,7 @@ import matplotlib.pyplot as plt
 import math
 
 cwd = os.getcwd()
-sys.path.append(r'C:\Users\tusha\OneDrive\Desktop\Machine Learning I')
-
+#sys.path.append(r'C:\Users\tusha\OneDrive\Desktop\Machine Learning I')
 # #################################################################################################################
 # Example 3: TASK A
 
@@ -14,9 +13,7 @@ N = 100
 mu = 20
 standard_dev = 4
 sigma = math.sqrt(standard_dev)
-
 s = np.random.normal(mu, sigma, N)
-
 gauss_func = 1/(sigma * np.sqrt(2 * np.pi)) * np.exp( - (s - mu)**2 / (2 * sigma**2))
 
 plt.figure()
@@ -25,6 +22,7 @@ plt.scatter(s, gauss_func, alpha=0.5)
 plt.xlabel('random values')
 plt.ylabel('gaussian pdf')
 plt.grid()
+
 
 plt.subplot(2,1,2)
 count, bins, ignored = plt.hist(s, 20, density=True, alpha=0.6, color='g')
